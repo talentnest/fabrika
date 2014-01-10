@@ -43,8 +43,9 @@ module Fabrika
 
     def run(*args)
       callbacks! :before
-      execute(*args)
+      execute_result = execute(*args)
       callbacks! :after
+      execute_result
     end
 
     protected

@@ -41,7 +41,7 @@ module Fabrika
 
     def run(*args)
       callbacks! :before
-      execute
+      execute(*args)
       callbacks! :after
     end
 

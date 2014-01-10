@@ -8,13 +8,15 @@ describe Fabrika::Step do
 
   describe "#run" do
 
-    subject { step.run }
+    subject { step.run(args) }
+
+    let(:args) { { some: "arguments" } }
 
     after { subject }
 
     it "calls callbacks and execute" do
       step.should_receive(:callbacks!).with(:before)
-      step.should_receive(:execute)
+      step.should_receive(:execute).with(args)
       step.should_receive(:callbacks!).with(:after)
     end
 

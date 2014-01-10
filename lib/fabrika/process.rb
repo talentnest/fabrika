@@ -39,7 +39,7 @@ module Fabrika
         when /^(.*)_step$/
           steps[$1.to_sym]
         when /^(.*)_step!$/
-          steps[$1.to_sym].run
+          steps[$1.to_sym].run(*args)
         else
           super
       end

@@ -1,6 +1,8 @@
 module Fabrika
   class Step
 
+    attr_accessor :process
+
     class << self
 
       def data(name, options = {}, &block)

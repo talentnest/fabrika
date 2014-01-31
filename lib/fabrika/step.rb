@@ -5,10 +5,15 @@ module Fabrika
 
     class << self
 
-      def data(name, options = {}, &block)
+      def resource(name, options = {}, &block)
         raise "Block Missing" unless block_given?
+
         define_method name do
-          instance_eval(&block)
+          if instance_variable_defined?("@#{name}")
+            instance_variable_get("@#{name}")
+          else
+            instance_variable_set("@#{name}", instance_eval(&block))
+          end
         end
       end
 
@@ -19,7 +24,6 @@ module Fabrika
       def after(&block)
         add_callback :before, &block
       end
-
 
       def add_callback(event, &block)
         @callbacks ||= {}
